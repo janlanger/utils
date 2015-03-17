@@ -176,8 +176,7 @@ class Strings
 		);
 		if (class_exists('Transliterator') && $transliterator = \Transliterator::create('Any-Latin; Latin-ASCII')) {
 			$s = $transliterator->transliterate($s);
-		}
-		if (ICONV_IMPL === 'glibc') {
+		} elseif (ICONV_IMPL === 'glibc') {
 			$s = str_replace(
 				array("\xC2\xBB", "\xC2\xAB", "\xE2\x80\xA6", "\xE2\x84\xA2", "\xC2\xA9", "\xC2\xAE"),
 				array('>>', '<<', '...', 'TM', '(c)', '(R)'), $s
